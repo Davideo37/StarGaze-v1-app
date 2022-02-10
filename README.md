@@ -1,1 +1,3 @@
-# cps350-2022-p1-gurge-morelli-chan
+# CPS 350 & COM 371 Joint Mobile App Project
+
+# Stargaze App
