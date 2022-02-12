@@ -40,7 +40,7 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+      <Stack.Group screenOptions={{ presentation: 'card' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
@@ -60,14 +60,15 @@ function BottomTabNavigator() {
     <BottomTab.Navigator
       initialRouteName="TabOne"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: "red",
+        
       }}>
       <BottomTab.Screen
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -89,7 +90,15 @@ function BottomTabNavigator() {
         component={TabTwoScreen}
         options={{
           title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={NotFoundScreen}
+        options={{
+          title: 'Tab Three',
+          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
         }}
       />
     </BottomTab.Navigator>
