@@ -11,20 +11,22 @@ export default function WeatherScreen() {
         </Text>
         <Text style={styles.title}>
           {checkWeather(
-            responseJson.current.condition.text,
-            responseJson.current.temp_f
+            responseJson.forecast.forecastday[0].hour[0].condition.text,
+            responseJson.forecast.forecastday[0].hour[0].temp_f
           )}
         </Text>
-        <Image
-          style={styles.weatherImage}
-          source={{
-            uri: "https:" + responseJson.current.condition.icon,
-          }}
-        />
         <View
           style={styles.separator}
           lightColor="#eee"
           darkColor="rgba(255,255,255,0.1)"
+        />
+        <Image
+          style={styles.weatherImage}
+          source={{
+            uri:
+              "https:" +
+              responseJson.forecast.forecastday[0].hour[0].condition.icon,
+          }}
         />
       </View>
     );

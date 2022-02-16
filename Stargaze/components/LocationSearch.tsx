@@ -6,7 +6,8 @@ export default function LocationSearch() {
     const [location, setLocation] = useState("");
     const [tempLocation, setTempLocation] = useState("");
     const handleSubmitLocation = () => {
-        setLocation(tempLocation);
+      setLocation(tempLocation);
+      alert(tempLocation);
     };
     return (
         <View>
