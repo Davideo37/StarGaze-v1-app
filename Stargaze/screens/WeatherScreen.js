@@ -7,7 +7,13 @@ export default function WeatherScreen() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          {checkWeather(responseJson.current.condition.text, responseJson.current.temp_f)}
+          {responseJson.location.name + ", " + responseJson.location.region}
+        </Text>
+        <Text style={styles.title}>
+          {checkWeather(
+            responseJson.current.condition.text,
+            responseJson.current.temp_f
+          )}
         </Text>
         <Image
           style={styles.weatherImage}

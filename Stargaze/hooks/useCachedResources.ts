@@ -3,9 +3,8 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 let responseJson;
-export default function useCachedResources() {
+export default function useCachedResources(location: string) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  const [location, setLocation] = useState("01984");
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {
@@ -37,7 +36,6 @@ export default function useCachedResources() {
 
     loadResourcesAndDataAsync();
   }, []);
-
   return isLoadingComplete;
 }
 export { responseJson };
