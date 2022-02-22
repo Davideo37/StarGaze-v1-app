@@ -2,6 +2,8 @@ import { SafeAreaView, TextInput, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Text, View } from "./Themed";
 import useWeatherAPI from "../hooks/useWeatherAPI";
+import {Button} from 'react-native-elements';
+import * as geoLocation from 'expo-location';
 
 
 export default function LocationSearch() {
@@ -10,6 +12,14 @@ export default function LocationSearch() {
     const handleSubmitLocation = () => {
       useWeatherAPI(tempLocation);
     }
+
+    const handleSubmitGeolocation = () => {
+      geoLocation.getCurrentPositionAsync().then(geoResponse => {
+        useWeatherAPI(geoResponse.coords.latitude+","+geoResponse.coords.longitude);
+        console.log("Submitted coords of "+geoResponse.coords.latitude+","+geoResponse.coords.longitude)
+      });
+    }
+
     return (
       <View>
         <SafeAreaView style={styles.inputView}>
@@ -20,6 +30,10 @@ export default function LocationSearch() {
             placeholderTextColor={"#3BCBFF"}
             onChangeText={setTempLocation}
             onSubmitEditing={handleSubmitLocation}
+          />
+          <Button
+            title={"Submit my current location"}
+            onPress={handleSubmitGeolocation}
           />
         </SafeAreaView>
       </View>

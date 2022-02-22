@@ -17,6 +17,8 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import WeatherScreen from '../screens/WeatherScreen';
 
+import useWeatherAPI from '../hooks/useWeatherAPI';
+
 const image = "../assets/images/background.jpg";
 
 export default function Navigation(colorScheme) {
