@@ -21,7 +21,7 @@ export default function TabOneScreen({ navigation }) {
           />
           
             {responseJson.forecast.forecastday.map((day, i) => {
-              return <MiniWeather navigation={navigation} data={day} index={i} />;
+              return <MiniWeather navigation={navigation} data={day} key={i} />;
             })}
         </ImageBackground>
       </View>
