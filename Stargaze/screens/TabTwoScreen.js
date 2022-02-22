@@ -1,14 +1,25 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ImageBackground } from 'react-native';
 
 import LocationSearch from '../components/LocationSearch';
 import { Text, View } from '../components/Themed';
+const image = "../assets/images/background.jpg";
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Page</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <LocationSearch/>
+      <ImageBackground
+        source={require(image)}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <Text style={styles.title}>Home Page</Text>
+        <View
+          style={styles.separator}
+          lightColor="#eee"
+          darkColor="rgba(255,255,255,0.1)"
+        />
+        <LocationSearch />
+      </ImageBackground>
     </View>
   );
 }
@@ -27,5 +38,10 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: '80%',
+  },
+  background: {
+    flex: 1,
+    width: "100%",
+    alignItems: "center",
   },
 });

@@ -2,8 +2,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
-let responseJson;
-export default function useCachedResources(location) {
+import useWeatherAPI from './useWeatherAPI';
+
+
+
+export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
   // Load any resources or data that we need prior to rendering the app
@@ -17,14 +20,7 @@ export default function useCachedResources(location) {
           ...FontAwesome.font,
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
         });
-        //setLocation("01984");
-        let response = await fetch(
-          "http://api.weatherapi.com/v1/forecast.json?key=000164ffa1bd49d48e3172911222001&q=" +
-           location  +
-            "&days=5&hour=20&raqi=no&alerts=no"
-        );
-        responseJson = await response.json();
-        console.log(responseJson);
+        await useWeatherAPI("01984");
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.warn(e);
@@ -38,4 +34,3 @@ export default function useCachedResources(location) {
   }, []);
   return isLoadingComplete;
 }
-export { responseJson };

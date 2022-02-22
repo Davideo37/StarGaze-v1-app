@@ -8,18 +8,22 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Pressable, ImageBackground } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import {responseJson} from '../hooks/useWeatherAPI';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import WeatherScreen from '../screens/WeatherScreen';
 
+const image = "../assets/images/background.jpg";
+
 export default function Navigation(colorScheme) {
   return (
     <NavigationContainer
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      theme={colorScheme.colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
       <RootNavigator />
     </NavigationContainer>
   );
@@ -34,9 +38,17 @@ const Stack = createNativeStackNavigator();
 function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Group screenOptions={{ presentation: 'card' }}>
-      </Stack.Group>
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{
+          headerShown: false}}
+      />
+      <Stack.Group
+        screenOptions={{
+          presentation: "card",
+        }}
+      ></Stack.Group>
     </Stack.Navigator>
   );
 }
@@ -49,26 +61,41 @@ const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
-
   return (
     <BottomTab.Navigator
-      initialRouteName="TabTwo"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: "red",
-        
-      }}>
+        tabBarInactiveTintColor: "white",
+        tabBarBackground: () => (
+          <ImageBackground
+            source={require(image)}
+            style={{
+              flex: 1,
+              width: "100%",
+              alignItems: "center",
+            }}
+            resizeMode="cover"
+          />
+        ),
+      }}
+      style={{ opacity: 0.1 }}
+    >
       <BottomTab.Screen
-        name="TabOne"
+        name="Weekly"
         component={TabOneScreen}
         options={({ navigation }) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="calendar" color={color} />,
+          title: "Weekly",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="calendar" color={color} />
+          ),
           headerRight: () => (
             <Pressable
-              onPress={() => navigation.navigate('Modal')}
+              onPress={() => navigation.navigate("Report")}
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
-              })}>
+              })}
+            >
               <FontAwesome
                 name="info-circle"
                 size={25}
@@ -80,18 +107,18 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Home"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
+          title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabThree"
-        component={WeatherScreen}
+        name="Report"
+        children={() => <WeatherScreen weatherData={responseJson} />}
         options={{
-          title: 'Tab Three',
+          title: "Report",
           tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
         }}
       />

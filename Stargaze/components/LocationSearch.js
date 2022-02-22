@@ -1,34 +1,35 @@
 import { SafeAreaView, TextInput, StyleSheet } from "react-native";
 import { useState } from "react";
 import { Text, View } from "./Themed";
+import useWeatherAPI from "../hooks/useWeatherAPI";
+
 
 export default function LocationSearch() {
     const [location, setLocation] = useState("");
     const [tempLocation, setTempLocation] = useState("");
     const handleSubmitLocation = () => {
-      setLocation(tempLocation);
-      alert(tempLocation);
-    };
+      useWeatherAPI(tempLocation);
+    }
     return (
-        <View>
-            <SafeAreaView style={styles.inputView}>
-                <TextInput
-                    style={styles.input}
-                    value={tempLocation}
-                    placeholder={"Enter a zipcode"}
-                    placeholderTextColor={"#FF0"}
-                    onChangeText={setTempLocation}
-                    onSubmitEditing={handleSubmitLocation}
-                />
-            </SafeAreaView>
-        </View>
+      <View>
+        <SafeAreaView style={styles.inputView}>
+          <TextInput
+            style={styles.input}
+            value={tempLocation}
+            placeholder={"Enter a zipcode"}
+            placeholderTextColor={"#3BCBFF"}
+            onChangeText={setTempLocation}
+            onSubmitEditing={handleSubmitLocation}
+          />
+        </SafeAreaView>
+      </View>
     );
 }
 const styles = StyleSheet.create({
   inputView: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#011",
+    
   },
   input: {
     alignItems: "center",
