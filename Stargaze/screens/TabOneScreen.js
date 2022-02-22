@@ -19,11 +19,10 @@ export default function TabOneScreen({ navigation }) {
             lightColor="#eee"
             darkColor="rgba(255,255,255,0.1)"
           />
-          <Card>
+          
             {responseJson.forecast.forecastday.map((day, i) => {
               return <MiniWeather navigation={navigation} data={day} index={i} />;
             })}
-          </Card>
         </ImageBackground>
       </View>
     );

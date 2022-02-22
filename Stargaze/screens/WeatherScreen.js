@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   weatherImage: {
-    width: 75,
-    height: 75,
+    width: 100,
+    height: 100,
     top: 0,
   },
   background: {

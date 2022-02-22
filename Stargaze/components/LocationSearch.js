@@ -16,7 +16,7 @@ export default function LocationSearch() {
           <TextInput
             style={styles.input}
             value={tempLocation}
-            placeholder={"Enter a zipcode"}
+            placeholder={"Enter a location"}
             placeholderTextColor={"#3BCBFF"}
             onChangeText={setTempLocation}
             onSubmitEditing={handleSubmitLocation}
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   inputView: {
     alignItems: "center",
     justifyContent: "center",
-    
   },
   input: {
     alignItems: "center",
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: "#0FC",
     padding: 10,
-    color: "#FF0",
+    color: "#3BCBFF",
     fontSize: 25,
   },
 });
