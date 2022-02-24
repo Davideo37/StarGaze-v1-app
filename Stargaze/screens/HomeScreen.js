@@ -4,7 +4,7 @@ import LocationSearch from '../components/LocationSearch';
 import { Text, View } from '../components/Themed';
 const image = "../assets/images/background.jpg";
 
-export default function TabTwoScreen() {
+export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ImageBackground

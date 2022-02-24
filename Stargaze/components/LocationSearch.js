@@ -3,22 +3,21 @@ import { useState } from "react";
 import { Text, View } from "./Themed";
 import useWeatherAPI from "../hooks/useWeatherAPI";
 
-
+// Location search box
 export default function LocationSearch() {
     const [location, setLocation] = useState("");
-    const [tempLocation, setTempLocation] = useState("");
     const handleSubmitLocation = () => {
-      useWeatherAPI(tempLocation);
+      useWeatherAPI(location);
     }
     return (
       <View>
         <SafeAreaView style={styles.inputView}>
           <TextInput
             style={styles.input}
-            value={tempLocation}
+            value={location}
             placeholder={"Enter a location"}
             placeholderTextColor={"#3BCBFF"}
-            onChangeText={setTempLocation}
+            onChangeText={setLocation}
             onSubmitEditing={handleSubmitLocation}
           />
         </SafeAreaView>

@@ -13,8 +13,8 @@ import { ColorSchemeName, Pressable, ImageBackground } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import {responseJson} from '../hooks/useWeatherAPI';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import ForecastScreen from '../screens/ForecastScreen';
+import HomeScreen from '../screens/HomeScreen';
 import WeatherScreen from '../screens/WeatherScreen';
 
 const image = "../assets/images/background.jpg";
@@ -83,7 +83,7 @@ function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="Weekly"
-        component={TabOneScreen}
+        component={ForecastScreen}
         options={({ navigation }) => ({
           title: "Weekly",
           tabBarIcon: ({ color }) => (
@@ -108,7 +108,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Home"
-        component={TabTwoScreen}
+        component={HomeScreen}
         options={{
           title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,

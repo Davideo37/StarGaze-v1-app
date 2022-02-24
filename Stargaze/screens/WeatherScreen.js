@@ -5,7 +5,7 @@ import checkWeather from "../hooks/checkWeather";
 const image = "../assets/images/background.jpg";
 
 export default function WeatherScreen(props) {
-  if (props.weatherData) {
+  if (props.weatherData) { // Only render if weatherdata exists
     return (
       <View style={styles.container}>
         <ImageBackground

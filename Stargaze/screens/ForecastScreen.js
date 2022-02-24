@@ -4,7 +4,7 @@ import MiniWeather from "../components/MiniWeather";
 import { responseJson } from "../hooks/useWeatherAPI";
 const image = "../assets/images/background.jpg";
 
-export default function TabOneScreen({ navigation }) {
+export default function ForecastScreen({ navigation }) {
   if (responseJson) {
     return (
       <View style={styles.container}>
@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    
   },
   title: {
     fontSize: 20,
