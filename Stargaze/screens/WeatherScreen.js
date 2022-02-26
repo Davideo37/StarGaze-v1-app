@@ -18,8 +18,8 @@ export default function WeatherScreen(props) {
           </Text>
           <Text style={styles.title}>
             {checkWeather(
-              props.weatherData.forecast.forecastday[0].hour[0].condition.text,
-              props.weatherData.forecast.forecastday[0].hour[0].temp_f
+              props.weatherData.forecast.forecastday[props.dayIndex].hour[0].condition.text,
+              props.weatherData.forecast.forecastday[props.dayIndex].hour[0].temp_f
             )}
           </Text>
           <View
@@ -32,7 +32,7 @@ export default function WeatherScreen(props) {
             source={{
               uri:
                 "https:" +
-                props.weatherData.forecast.forecastday[0].hour[0].condition.icon,
+                props.weatherData.forecast.forecastday[props.dayIndex].hour[0].condition.icon,
             }}
           />
         </ImageBackground>

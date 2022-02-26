@@ -1,10 +1,10 @@
 import { StyleSheet, Pressable, ImageBackground } from "react-native";
-import { Text, View, Card } from "../components/Themed";
+import { Text, View } from "../components/Themed";
 import MiniWeather from "../components/MiniWeather";
 import { responseJson } from "../hooks/useWeatherAPI";
 const image = "../assets/images/background.jpg";
 
-export default function ForecastScreen({ navigation }) {
+export default function ForecastScreen({ navigation }, weatherData) {
   if (responseJson) {
     return (
       <View style={styles.container}>
@@ -19,10 +19,11 @@ export default function ForecastScreen({ navigation }) {
             lightColor="#eee"
             darkColor="rgba(255,255,255,0.1)"
           />
-          
+          <View style={styles.cards}>
             {responseJson.forecast.forecastday.map((day, i) => {
-              return <MiniWeather navigation={navigation} data={day} key={i} />;
+              return <MiniWeather data={day} key={i} navigation={navigation} index={i} />;
             })}
+          </View>
         </ImageBackground>
       </View>
     );
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
     
   },
   title: {
+    flex: 1,
     fontSize: 20,
     fontWeight: "bold",
   },
@@ -50,6 +52,14 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: "100%",
+    height: "100%",
     alignItems: "center",
+    position: "absolute",
   },
+  cards: {
+    alignContent: "center",
+    flex: 1,
+    position: "absolute",
+    top: "10%"
+  }
 });

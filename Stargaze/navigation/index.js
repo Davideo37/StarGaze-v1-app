@@ -16,7 +16,7 @@ import {responseJson} from '../hooks/useWeatherAPI';
 import ForecastScreen from '../screens/ForecastScreen';
 import HomeScreen from '../screens/HomeScreen';
 import WeatherScreen from '../screens/WeatherScreen';
-
+import { dayIndex } from '../components/MiniWeather';
 const image = "../assets/images/background.jpg";
 
 export default function Navigation(colorScheme) {
@@ -83,7 +83,7 @@ function BottomTabNavigator() {
     >
       <BottomTab.Screen
         name="Weekly"
-        component={ForecastScreen}
+        children={() => <ForecastScreen weatherData={responseJson} />}
         options={({ navigation }) => ({
           title: "Weekly",
           tabBarIcon: ({ color }) => (
@@ -116,7 +116,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Report"
-        children={() => <WeatherScreen weatherData={responseJson} />}
+        children={() => <WeatherScreen weatherData={responseJson} dayIndex={dayIndex} />}
         options={{
           title: "Report",
           tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,

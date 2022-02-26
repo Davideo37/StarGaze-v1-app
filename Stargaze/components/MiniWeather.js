@@ -1,43 +1,63 @@
-import { responseJson } from "../hooks/useWeatherAPI";
 import { StyleSheet, Image, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "../components/Themed";
-import { Card } from "react-native-elements";
-
-export default function MiniWeather(props) {
+let dayIndex = 0;
+function MiniWeather(props) {
+  const navigation = useNavigation();
   return (
     <View>
       <Pressable
         onPress={() => {
-          props.navigation.navigate("Report");
+          dayIndex = props.index;
+          navigation.navigate("Report");
         }}
         style={({ pressed }) => ({
           opacity: pressed ? 0.5 : 1,
         })}
       >
-        <Card>
-          <Card.Title>Date: {props.data.date}</Card.Title>
+        <View style={styles.card}>
+          <Text style={styles.text}>Date: {props.data.date}</Text>
           <Text style={styles.text}>
             Weather: {props.data.hour[0].condition.text}
           </Text>
-          <View>
+         
             <Image
               style={styles.image}
               resizeMode="cover"
               source={{ uri: "https:" + props.data.hour[0].condition.icon }}
             />
-          </View>
-        </Card>
+          
+        </View>
       </Pressable>
+      <View style={styles.separator}></View>
     </View>
   );
 }
 const styles = StyleSheet.create({
+  card: {
+    
+    alignContent: "center",
+    justifyContent: "center",
+    backgroundColor: "#222222",
+    height: 150,
+    width: 150,
+  },
   image: {
-    width: 75,
-    height: 75,
-    top: 0,
+    width: 100,
+    height: 100,
+    alignSelf:"center",
   },
   text: {
-    color: "#000",
+    color: "#FFFFFF",
+    textAlign: "center",
+    flexWrap: "wrap",
+  },
+  separator: {
+    marginVertical: 30,
+    height: 1,
+    width: "80%",
   },
 });
+
+export default MiniWeather;
+export { dayIndex };

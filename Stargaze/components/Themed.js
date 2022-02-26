@@ -4,7 +4,6 @@
  */
 
 import { Text as DefaultText, View as DefaultView } from 'react-native';
-import { Card as DefaultCard } from 'react-native-elements';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -36,9 +35,3 @@ export function View(props) {
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
-export function Card(props) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-
-  return <DefaultCard style={[{ color }, style]} {...otherProps} />;
-}
