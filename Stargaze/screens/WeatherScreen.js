@@ -1,4 +1,4 @@
-import { StyleSheet, ImageBackground, Image } from "react-native";
+import { StyleSheet, ImageBackground, Image, SafeAreaView, StatusBar } from "react-native";
 import { Text, View } from "../components/Themed";
 import checkWeather from "../hooks/checkWeather";
 
@@ -7,7 +7,7 @@ const image = "../assets/images/background.jpg";
 export default function WeatherScreen(props) {
   if (props.weatherData) { // Only render if weatherdata exists
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ImageBackground
           source={require(image)}
           style={styles.background}
@@ -16,7 +16,7 @@ export default function WeatherScreen(props) {
           <Text style={styles.title}>
             {props.weatherData.location.name + ", " + props.weatherData.location.region}
           </Text>
-          <Text style={styles.title}>
+          <Text style={styles.report}>
             {checkWeather(
               props.weatherData.forecast.forecastday[props.dayIndex].hour[0].condition.text,
               props.weatherData.forecast.forecastday[props.dayIndex].hour[0].temp_f
@@ -36,7 +36,7 @@ export default function WeatherScreen(props) {
             }}
           />
         </ImageBackground>
-      </View>
+      </SafeAreaView>
     );
   } else {
     return <View></View>;
@@ -50,9 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
     textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    width: "60%",
+    color: "#3BCBFF",
+  },
+  report: {
+
   },
   separator: {
     marginVertical: 30,
@@ -62,10 +67,10 @@ const styles = StyleSheet.create({
   weatherImage: {
     width: 100,
     height: 100,
-    top: 0,
   },
   background: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
     width: "100%",
     alignItems: "center",
   },

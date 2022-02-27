@@ -1,31 +1,28 @@
-import { StyleSheet, Pressable, ImageBackground } from "react-native";
+import { StyleSheet, Pressable, ImageBackground, StatusBar } from "react-native";
 import { Text, View } from "../components/Themed";
 import MiniWeather from "../components/MiniWeather";
 import { responseJson } from "../hooks/useWeatherAPI";
+import { SafeAreaView } from "react-native-safe-area-context";
 const image = "../assets/images/background.jpg";
 
 export default function ForecastScreen({ navigation }, weatherData) {
   if (responseJson) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <ImageBackground
           source={require(image)}
           style={styles.background}
           resizeMode="cover"
         >
           <Text style={styles.title}>Forecasted Weather</Text>
-          <View
-            style={styles.separator}
-            lightColor="#eee"
-            darkColor="rgba(255,255,255,0.1)"
-          />
-          <View style={styles.cards}>
+          
+          <SafeAreaView style={styles.cards}>
             {responseJson.forecast.forecastday.map((day, i) => {
               return <MiniWeather data={day} key={i} navigation={navigation} index={i} />;
             })}
-          </View>
+          </SafeAreaView>
         </ImageBackground>
-      </View>
+      </SafeAreaView>
     );
   } else {
     return (<View></View>);
@@ -37,12 +34,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    
   },
   title: {
-    flex: 1,
-    fontSize: 20,
+    textAlign: "center",
+    fontSize: 30,
     fontWeight: "bold",
+    width: "40%",
+    color: "#3BCBFF",
   },
   separator: {
     marginVertical: 30,
@@ -51,15 +49,14 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
+    paddingTop: StatusBar.currentHeight,
     width: "100%",
-    height: "100%",
     alignItems: "center",
-    position: "absolute",
   },
   cards: {
     alignContent: "center",
     flex: 1,
     position: "absolute",
-    top: "10%"
-  }
+    top: "15%",
+  },
 });

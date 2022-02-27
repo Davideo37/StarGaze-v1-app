@@ -78,6 +78,7 @@ function BottomTabNavigator() {
             resizeMode="cover"
           />
         ),
+        headerShown: false,
       }}
       style={{ opacity: 0.1 }}
     >
