@@ -17,6 +17,7 @@ import ForecastScreen from '../screens/ForecastScreen';
 import HomeScreen from '../screens/HomeScreen';
 import WeatherScreen from '../screens/WeatherScreen';
 import { dayIndex } from '../components/MiniWeather';
+
 const image = "../assets/images/background.jpg";
 
 export default function Navigation(colorScheme) {
