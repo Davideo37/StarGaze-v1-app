@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView, StyleSheet, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
+import { SafeAreaView, StyleSheet, ImageBackground, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import LocationSearch from '../components/LocationSearch';
 import { Text, View } from '../components/Themed';
@@ -71,12 +71,16 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    width: "100%",
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
     alignItems: "center",
   },
   search: {
     width: "75%",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   buttonView: {
     height: 50,
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     bottom: "10%",
     flexDirection: "row",
     backgroundColor: "transparent",
-    alignItems: "center"
+    alignItems: "center",
   },
   button: {
     width: "50%",
