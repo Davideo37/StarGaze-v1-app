@@ -16,11 +16,11 @@ export default function ForecastScreen({ navigation }, weatherData) {
         >
           <Text style={styles.title}>Forecast</Text>
           <Text style={styles.text}>Tap a day to see more details!</Text>
-          <SafeAreaView style={styles.cards}>
+          <View style={styles.cards}>
             {responseJson.forecast.forecastday.map((day, i) => {
               return <MiniWeather data={day} key={i} navigation={navigation} index={i} />;
             })}
-          </SafeAreaView>
+          </View>
         </ImageBackground>
       </View>
     );
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     flex: 1,
     position: "absolute",
-    top: "15%",
+    top: "20%",
+    backgroundColor: "transparent",
   },
 });

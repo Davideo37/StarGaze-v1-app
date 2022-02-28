@@ -1,4 +1,4 @@
-import { StyleSheet, Image, Pressable, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, Image, Pressable, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "../components/Themed";
 let dayIndex = 0;
@@ -7,7 +7,7 @@ function MiniWeather(props) {
   const navigation = useNavigation();
   const dateString = props.data.date;
   return (
-    <SafeAreaView style={styles.card}>
+    <View style={styles.card}>
       <Pressable
         onPress={() => {
           dayIndex = props.index;
@@ -23,7 +23,6 @@ function MiniWeather(props) {
           <Text style={styles.text}>
             {props.data.hour[0].condition.text}
           </Text>
-         
             <Image
               style={styles.image}
               resizeMode="cover"
@@ -31,7 +30,7 @@ function MiniWeather(props) {
             />
         </View>
       </Pressable>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -43,7 +42,6 @@ export function formatDate(date) {
 }
 const styles = StyleSheet.create({
   card: {
-    alignContent: "center",
     justifyContent: "center",
     backgroundColor: "#444444",
     height: 120,

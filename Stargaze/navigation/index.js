@@ -68,17 +68,7 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: "red",
         tabBarInactiveTintColor: "white",
-        tabBarBackground: () => (
-          <ImageBackground
-            source={require(image)}
-            style={{
-              flex: 1,
-              width: "100%",
-              alignItems: "center",
-            }}
-            resizeMode="cover"
-          />
-        ),
+        tabBarHideOnKeyboard: true,
         headerShown: false,
       }}
       style={{ opacity: 0.1 }}
