@@ -2,8 +2,10 @@ import { StyleSheet, Image, Pressable, SafeAreaView, StatusBar } from "react-nat
 import { useNavigation } from "@react-navigation/native";
 import { Text, View } from "../components/Themed";
 let dayIndex = 0;
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Nov", "Dec"];
 function MiniWeather(props) {
   const navigation = useNavigation();
+  const dateString = props.data.date;
   return (
     <SafeAreaView style={styles.card}>
       <Pressable
@@ -13,12 +15,13 @@ function MiniWeather(props) {
         }}
         style={({ pressed }) => ({
           opacity: pressed ? 0.5 : 1,
+          backgroundColor: "transparent",
         })}
       >
         <View style={styles.card}>
-          <Text style={styles.text}>Date: {props.data.date}</Text>
+          <Text style={styles.text}>{formatDate(dateString)}</Text>
           <Text style={styles.text}>
-            Weather: {props.data.hour[0].condition.text}
+            {props.data.hour[0].condition.text}
           </Text>
          
             <Image
@@ -31,24 +34,36 @@ function MiniWeather(props) {
     </SafeAreaView>
   );
 }
+
+export function formatDate(date) {
+  let pieces = date.split("-")
+  let month = pieces[1]
+  let day = pieces[2]
+  return months[parseInt(month)-1] + ", " + day;
+}
 const styles = StyleSheet.create({
   card: {
     alignContent: "center",
     justifyContent: "center",
-    backgroundColor: "#222222",
-    height: 150,
-    width: 150,
+    backgroundColor: "#444444",
+    height: 120,
+    width: 120,
     paddingBottom: "5%",
+    borderRadius: 10,
+    marginTop: 50,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     alignSelf: "center",
+    paddingBottom: 10,
   },
   text: {
     color: "#FFFFFF",
     textAlign: "center",
     flexWrap: "wrap",
+    padding: "auto",
+    backgroundColor: "#333333",
   },
   separator: {
     marginVertical: 30,

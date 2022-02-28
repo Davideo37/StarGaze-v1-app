@@ -1,20 +1,22 @@
 import { StyleSheet, ImageBackground, Image, SafeAreaView, StatusBar } from "react-native";
 import { Text, View } from "../components/Themed";
 import checkWeather from "../hooks/checkWeather";
-
+import { formatDate } from "../components/MiniWeather";
 const image = "../assets/images/background.jpg";
 
 export default function WeatherScreen(props) {
   if (props.weatherData) { // Only render if weatherdata exists
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ImageBackground
           source={require(image)}
           style={styles.background}
           resizeMode="cover"
         >
-          <Text style={styles.title}>
-            {props.weatherData.location.name + ", " + props.weatherData.location.region}
+          <Text style={styles.title}> Weather Report</Text>
+          <Text style={styles.report}>Weather for 
+            {" " +props.weatherData.location.name + ", " + props.weatherData.location.region + " "}
+            on {formatDate(props.weatherData.forecast.forecastday[props.dayIndex].date)}
           </Text>
           <Text style={styles.report}>
             {checkWeather(
@@ -36,7 +38,7 @@ export default function WeatherScreen(props) {
             }}
           />
         </ImageBackground>
-      </SafeAreaView>
+      </View>
     );
   } else {
     return <View></View>;
@@ -51,13 +53,23 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    fontSize: 30,
+    fontSize: 50,
     fontWeight: "bold",
-    width: "60%",
-    color: "#3BCBFF",
+    width: "100%",
+    color: "#FFFFFF",
+    textShadowColor: "#000",
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 10,
   },
   report: {
-
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    width: "100%",
+    color: "#FFFFFF",
+    textShadowColor: "#000",
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 10,
   },
   separator: {
     marginVertical: 30,
