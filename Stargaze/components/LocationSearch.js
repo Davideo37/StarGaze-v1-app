@@ -3,6 +3,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
 import { useState } from "react";
 import { Text, View } from "./Themed";
@@ -15,7 +16,9 @@ import { SearchBar } from "react-native-elements/dist/searchbar/SearchBar";
 export default function LocationSearch() {
   const [location, setLocation] = useState("");
   const [tempLocation, setTempLocation] = useState("");
+
   const handleSubmitLocation = () => {
+    Keyboard.dismiss()
     useWeatherAPI(tempLocation).then((res) =>
       setLocation(res.location.name + ", " + res.location.region)
     );
@@ -40,15 +43,21 @@ export default function LocationSearch() {
   return (
     <View style={{ backgroundColor: "transparent" }}>
       <View style={styles.inputView}>
-        <SearchBar
+        <TextInput
           style={styles.input}
-          searchIcon={false}
           value={tempLocation}
           placeholder={"Enter a location"}
           placeholderTextColor={"#3BCBFF"}
           onChangeText={setTempLocation}
           onSubmitEditing={handleSubmitLocation}
         />
+        <TouchableOpacity
+          style={styles.submitButton}
+          title={"submit"}
+          onPress={handleSubmitLocation}
+        >
+          <Text style={styles.buttonText}>{">"}</Text>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -71,9 +80,11 @@ export default function LocationSearch() {
 const styles = StyleSheet.create({
   inputView: {
     width: "100%",
+    height: 125,
     paddingBottom: "5%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     backgroundColor: "transparent",
-    alignSelf: "center",
   },
   input: {
     marginBottom: 12,
@@ -83,6 +94,21 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "#3BCBFF",
     fontSize: 20,
+    height: "55%",
+    width: "75%",
+    top: "5%",
+    left: "10%",
+  },
+  submitButton: {
+    color: "#000",
+    backgroundColor: "#0e2654",
+    position: "absolute",
+    height: "55%",
+    width: "15%",
+    top: "14%",
+    right: "5%",
+    justifyContent: "center",
+    borderRadius: 10,
   },
   button: {
     width: "50%",

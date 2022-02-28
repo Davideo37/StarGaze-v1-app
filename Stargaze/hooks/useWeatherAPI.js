@@ -8,7 +8,7 @@ export default async function useWeatherAPI(location) {
       "&days=5&hour=20&raqi=no&alerts=no"
   );
   responseJson = await response.json();
-  console.log(responseJson);
+  console.log(responseJson.location.name);
   return responseJson;
 }
 export { responseJson };
