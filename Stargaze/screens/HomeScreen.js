@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, StyleSheet, ImageBackground, StatusBar, TouchableOpacity } from 'react-native';
-
+import { FontAwesome } from '@expo/vector-icons';
 import LocationSearch from '../components/LocationSearch';
 import { Text, View } from '../components/Themed';
 const image = "../assets/images/background.jpg";
@@ -14,7 +14,9 @@ export default function HomeScreen() {
         style={styles.background}
         resizeMode="cover"
       >
-        <Text style={styles.title}>STARGAZE</Text>
+        <Text style={styles.title}>
+          {<FontAwesome name="star-o" size={60} />}STARGAZE
+        </Text>
         <Text style={styles.headerText}>Enter a location or use your GPS!</Text>
         <View style={styles.search}>
           <LocationSearch />
@@ -23,12 +25,19 @@ export default function HomeScreen() {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              navigation.navigate("Weekly");
+              navigation.navigate("Forecast");
             }}
           >
-            <Text style={styles.buttonText}>Tap Here to see the forecast</Text>
+            <Text style={styles.buttonText}>Forecast</Text>
           </TouchableOpacity>
-          <Text style={styles.buttonText}>Or use the tabs on the bottom</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("Report");
+            }}
+          >
+            <Text style={styles.buttonText}>Report</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -71,18 +80,22 @@ const styles = StyleSheet.create({
   },
   buttonView: {
     height: 50,
-    width: "75%",
+    width: "70%",
     position: "absolute",
     bottom: "10%",
+    flexDirection: "row",
+    backgroundColor: "transparent",
+    alignItems: "center"
   },
   button: {
-    width: "100%",
+    width: "50%",
     height: "100%",
     color: "#000",
     alignSelf: "center",
     backgroundColor: "#0e2654",
     justifyContent: "center",
     borderRadius: 10,
+    marginRight: 10,
   },
   buttonText: {
     fontSize: 20,

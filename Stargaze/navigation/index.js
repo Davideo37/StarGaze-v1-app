@@ -15,7 +15,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import {responseJson} from '../hooks/useWeatherAPI';
 import ForecastScreen from '../screens/ForecastScreen';
 import HomeScreen from '../screens/HomeScreen';
-import WeatherScreen from '../screens/WeatherScreen';
+import ReportScreen from '../screens/ReportScreen';
 import { dayIndex } from '../components/MiniWeather';
 
 const image = "../assets/images/background.jpg";
@@ -84,27 +84,12 @@ function BottomTabNavigator() {
       style={{ opacity: 0.1 }}
     >
       <BottomTab.Screen
-        name="Weekly"
+        name="Forecast"
         children={() => <ForecastScreen weatherData={responseJson} />}
         options={({ navigation }) => ({
-          title: "Weekly",
+          title: "Forecast",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />
-          ),
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Report")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
           ),
         })}
       />
@@ -118,7 +103,7 @@ function BottomTabNavigator() {
       />
       <BottomTab.Screen
         name="Report"
-        children={() => <WeatherScreen weatherData={responseJson} dayIndex={dayIndex} />}
+        children={() => <ReportScreen weatherData={responseJson} dayIndex={dayIndex} />}
         options={{
           title: "Report",
           tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
@@ -131,6 +116,6 @@ function BottomTabNavigator() {
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props) {
+export function TabBarIcon(props) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
