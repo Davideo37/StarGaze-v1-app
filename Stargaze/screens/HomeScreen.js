@@ -71,16 +71,16 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     paddingTop: StatusBar.currentHeight,
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     top: 0,
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
     alignItems: "center",
   },
   search: {
     width: "75%",
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   buttonView: {
     height: 50,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     bottom: "10%",
     flexDirection: "row",
     backgroundColor: "transparent",
-    alignItems: "center",
+    alignItems: "center"
   },
   button: {
     width: "50%",

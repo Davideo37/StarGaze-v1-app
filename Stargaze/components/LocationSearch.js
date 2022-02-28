@@ -42,6 +42,7 @@ export default function LocationSearch() {
       <View style={styles.inputView}>
         <SearchBar
           style={styles.input}
+          searchIcon={false}
           value={tempLocation}
           placeholder={"Enter a location"}
           placeholderTextColor={"#3BCBFF"}
@@ -69,9 +70,10 @@ export default function LocationSearch() {
 }
 const styles = StyleSheet.create({
   inputView: {
-    width: "90%",
+    width: "100%",
     paddingBottom: "5%",
     backgroundColor: "transparent",
+    alignSelf: "center",
   },
   input: {
     marginBottom: 12,
