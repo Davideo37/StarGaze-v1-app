@@ -7,7 +7,7 @@ function MiniWeather(props) {
   const navigation = useNavigation();
   const dateString = props.data.date;
   return (
-    <View style={styles.card}>
+    <View style={{backgroundColor: "transparent"}}>
       <Pressable
         onPress={() => {
           dayIndex = props.index;
@@ -43,9 +43,11 @@ export function formatDate(date) {
 const styles = StyleSheet.create({
   card: {
     justifyContent: "center",
-    backgroundColor: "#444444",
-    height: 120,
-    width: 120,
+    backgroundColor: "#13272b",
+    borderWidth: 3,
+    borderColor: "#1fb77a",
+    height: 130,
+    width: 140,
     paddingBottom: "5%",
     borderRadius: 10,
     marginTop: 50,
@@ -61,7 +63,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     flexWrap: "wrap",
     padding: "auto",
-    backgroundColor: "#333333",
+    backgroundColor: "transparent",
+    borderRadius: 2,
+    textShadowColor: "#000",
+    textShadowOffset: { width: 3, height: 3 },
+    textShadowRadius: 10,
   },
   separator: {
     marginVertical: 30,
