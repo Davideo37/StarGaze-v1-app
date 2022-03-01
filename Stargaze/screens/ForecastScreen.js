@@ -1,12 +1,10 @@
 import { StyleSheet, Pressable, ImageBackground, StatusBar } from "react-native";
 import { Text, View } from "../components/Themed";
 import MiniWeather from "../components/MiniWeather";
-import { responseJson } from "../hooks/useWeatherAPI";
-import { SafeAreaView } from "react-native-safe-area-context";
 const image = "../assets/images/background.jpg";
 
-export default function ForecastScreen({ navigation }, weatherData) {
-  if (responseJson) {
+export default function ForecastScreen(props) {
+  if (props.weatherData.forecast) {
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -17,7 +15,7 @@ export default function ForecastScreen({ navigation }, weatherData) {
           <Text style={styles.title}>Forecast</Text>
           <Text style={styles.text}>Tap a day to see more details!</Text>
           <View style={styles.cards}>
-            {responseJson.forecast.forecastday.map((day, i) => {
+            {props.weatherData.forecast.forecastday.map((day, i) => {
               return <MiniWeather data={day} key={i} navigation={navigation} index={i} />;
             })}
           </View>
@@ -25,7 +23,18 @@ export default function ForecastScreen({ navigation }, weatherData) {
       </View>
     );
   } else {
-    return (<View></View>);
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={require(image)}
+          style={styles.background}
+          resizeMode="cover"
+        >
+          <Text style={styles.title}>Forecast</Text>
+          <Text style={styles.text}>No Location Found</Text>
+        </ImageBackground>
+      </View>
+    );
   }
 }
 

@@ -18,9 +18,12 @@ export default function LocationSearch() {
   const [tempLocation, setTempLocation] = useState("");
 
   const handleSubmitLocation = () => {
-    Keyboard.dismiss()
-    useWeatherAPI(tempLocation).then((res) =>
-      setLocation(res.location.name + ", " + res.location.region)
+    Keyboard.dismiss();
+    useWeatherAPI(tempLocation).then(
+      (resp) => {
+        setLocation(resp.location.name + ", " + resp.location.region);
+      },
+      (reason) => console.warn(reason)
     );
   };
 
@@ -28,8 +31,9 @@ export default function LocationSearch() {
     geoLocation.getCurrentPositionAsync().then((geoResponse) => {
       useWeatherAPI(
         geoResponse.coords.latitude + "," + geoResponse.coords.longitude
-      ).then((res) =>
-        setLocation(res.location.name + ", " + res.location.region)
+      ).then(
+        (resp) => setLocation(resp.location.name + ", " + resp.location.region),
+        (reason) => console.warn(reason)
       );
       console.log(
         "Submitted coords of " +

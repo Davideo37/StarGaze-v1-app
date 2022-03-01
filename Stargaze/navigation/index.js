@@ -18,7 +18,6 @@ import HomeScreen from '../screens/HomeScreen';
 import ReportScreen from '../screens/ReportScreen';
 import { dayIndex } from '../components/MiniWeather';
 
-const image = "../assets/images/background.jpg";
 
 export default function Navigation(colorScheme) {
   return (
@@ -76,7 +75,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Forecast"
         children={() => <ForecastScreen weatherData={responseJson} />}
-        options={({ navigation }) => ({
+        options={() => ({
           title: "Forecast",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calendar" color={color} />

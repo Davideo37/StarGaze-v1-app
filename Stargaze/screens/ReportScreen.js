@@ -11,7 +11,7 @@ import { formatDate } from "../components/MiniWeather";
 const image = "../assets/images/background.jpg";
 
 export default function ReportScreen(props) {
-  if (props.weatherData) {
+  if (props.weatherData.forecast) {
     // Only render if weatherdata exists
     return (
       <View style={styles.container}>
@@ -69,7 +69,18 @@ export default function ReportScreen(props) {
       </View>
     );
   } else {
-    return <View></View>;
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={require(image)}
+          style={styles.background}
+          resizeMode="cover"
+        >
+          <Text style={styles.title}> Weather Report</Text>
+          <Text style={styles.header}>No Location Found</Text>
+        </ImageBackground>
+      </View>
+    );
   }
 }
 
