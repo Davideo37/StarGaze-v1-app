@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, ImageBackground, StatusBar, TouchableOpacity,
 import { FontAwesome } from '@expo/vector-icons';
 import LocationSearch from '../components/LocationSearch';
 import { Text, View } from '../components/Themed';
-const image = "../assets/images/background.jpg";
+const image = "../assets/images/background.png";
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -21,24 +21,7 @@ export default function HomeScreen() {
         <View style={styles.search}>
           <LocationSearch />
         </View>
-        <View style={styles.buttonView}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Forecast");
-            }}
-          >
-            <Text style={styles.buttonText}>Forecast</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              navigation.navigate("Report");
-            }}
-          >
-            <Text style={styles.buttonText}>Report</Text>
-          </TouchableOpacity>
-        </View>
+        
       </ImageBackground>
     </View>
   );

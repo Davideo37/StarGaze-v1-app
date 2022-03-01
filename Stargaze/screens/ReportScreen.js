@@ -8,7 +8,7 @@ import {
 import { Text, View } from "../components/Themed";
 import checkWeather from "../hooks/checkWeather";
 import { formatDate } from "../components/MiniWeather";
-const image = "../assets/images/background.jpg";
+let image = "../assets/images/background.png";
 
 export default function ReportScreen(props) {
   if (props.weatherData.forecast) {

@@ -11,9 +11,11 @@ import useWeatherAPI from "../hooks/useWeatherAPI";
 import { Button } from "react-native-elements";
 import * as geoLocation from "expo-location";
 import { SearchBar } from "react-native-elements/dist/searchbar/SearchBar";
+import { useNavigation } from "@react-navigation/native";
 
 // Location search box
 export default function LocationSearch() {
+  const nav = useNavigation();
   const [location, setLocation] = useState("");
   const [tempLocation, setTempLocation] = useState("");
 
@@ -24,17 +26,20 @@ export default function LocationSearch() {
         setLocation(resp.location.name + ", " + resp.location.region);
       },
       (reason) => console.warn(reason)
-    );
+    ).then(()=>nav.navigate("Report"));
   };
 
   const handleSubmitGeolocation = () => {
     geoLocation.getCurrentPositionAsync().then((geoResponse) => {
       useWeatherAPI(
         geoResponse.coords.latitude + "," + geoResponse.coords.longitude
-      ).then(
-        (resp) => setLocation(resp.location.name + ", " + resp.location.region),
-        (reason) => console.warn(reason)
-      );
+      )
+        .then(
+          (resp) =>
+            setLocation(resp.location.name + ", " + resp.location.region),
+          (reason) => console.warn(reason)
+        )
+        .then(() => nav.navigate("Report"));
       console.log(
         "Submitted coords of " +
           geoResponse.coords.latitude +
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
   input: {
     marginBottom: 12,
     borderWidth: 3,
-    borderColor: "#0FC",
+    borderColor: "#1fb77a",
     backgroundColor: "#222222",
     padding: 10,
     color: "#3BCBFF",
@@ -105,7 +110,9 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     color: "#000",
-    backgroundColor: "#0e2654",
+    backgroundColor: "#135299",
+    borderColor: "#1fb77a",
+    borderWidth: 3,
     position: "absolute",
     height: "55%",
     width: "15%",
@@ -119,7 +126,9 @@ const styles = StyleSheet.create({
     height: 50,
     color: "#000",
     alignSelf: "center",
-    backgroundColor: "#0e2654",
+    backgroundColor: "#135299",
+    borderColor: "#1fb77a",
+    borderWidth: 3,
     justifyContent: "center",
     borderRadius: 10,
   },

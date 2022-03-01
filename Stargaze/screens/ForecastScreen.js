@@ -1,7 +1,8 @@
 import { StyleSheet, Pressable, ImageBackground, StatusBar } from "react-native";
 import { Text, View } from "../components/Themed";
 import MiniWeather from "../components/MiniWeather";
-const image = "../assets/images/background.jpg";
+import { useNavigation } from "@react-navigation/native";
+const image = "../assets/images/background.png";
 
 export default function ForecastScreen(props) {
   if (props.weatherData.forecast) {
@@ -16,7 +17,7 @@ export default function ForecastScreen(props) {
           <Text style={styles.text}>Tap a day to see more details!</Text>
           <View style={styles.cards}>
             {props.weatherData.forecast.forecastday.map((day, i) => {
-              return <MiniWeather data={day} key={i} navigation={navigation} index={i} />;
+              return <MiniWeather data={day} key={i} index={i} />;
             })}
           </View>
         </ImageBackground>
