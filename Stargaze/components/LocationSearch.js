@@ -21,12 +21,20 @@ export default function LocationSearch() {
 
   const handleSubmitLocation = () => {
     Keyboard.dismiss();
-    useWeatherAPI(tempLocation).then(
-      (resp) => {
-        setLocation(resp.location.name + ", " + resp.location.region);
-      },
-      (reason) => console.warn(reason)
-    ).then(()=>nav.navigate("Report"));
+    useWeatherAPI(tempLocation)
+      .then(
+        (resp) => {
+          setLocation(
+            resp.location.name +
+              ", " +
+              (resp.location.region
+                ? resp.location.region
+                : resp.location.country)
+          );
+        },
+        (reason) => console.warn(reason)
+      )
+      .then(() => nav.navigate("Report"));
   };
 
   const handleSubmitGeolocation = () => {
@@ -36,7 +44,13 @@ export default function LocationSearch() {
       )
         .then(
           (resp) =>
-            setLocation(resp.location.name + ", " + resp.location.region),
+            setLocation(
+              resp.location.name +
+                ", " +
+                (resp.location.region
+                  ? resp.location.region
+                  : resp.location.country)
+            ),
           (reason) => console.warn(reason)
         )
         .then(() => nav.navigate("Report"));

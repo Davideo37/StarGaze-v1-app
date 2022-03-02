@@ -33,7 +33,7 @@ export default function ReportScreen(props) {
     }else{
       image = require("../assets/images/imageCold.png");
     }
-
+    let loc = props.weatherData.location.name+ ", " + (props.weatherData.location.region ? (props.weatherData.location.region) : props.weatherData.location.country)
     return (
       <View style={styles.container}>
         <ImageBackground
@@ -44,10 +44,7 @@ export default function ReportScreen(props) {
           <Text style={styles.title}> Weather Report</Text>
           <Text style={styles.header}>
             Location:
-            {" " +
-              props.weatherData.location.name +
-              ", " +
-              props.weatherData.location.region}
+            {" "+loc}
           </Text>
           <View style={styles.card}>
             <Text style={styles.report}>
@@ -148,8 +145,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#13272b",
     borderWidth: 3,
     borderColor: "#1fb77a",
-    height: "40%",
-    width: "70%",
+    height: "50%",
+    width: "75%",
     paddingBottom: "5%",
     borderRadius: 10,
     position: "absolute",
