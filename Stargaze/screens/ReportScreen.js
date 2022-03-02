@@ -8,15 +8,36 @@ import {
 import { Text, View } from "../components/Themed";
 import checkWeather from "../hooks/checkWeather";
 import { formatDate } from "../components/MiniWeather";
-let image = "../assets/images/background.png";
+let image = require("../assets/images/background.png");
 
 export default function ReportScreen(props) {
   if (props.weatherData.forecast) {
     // Only render if weatherdata exists
+    
+    let temperature = props.weatherData.forecast.forecastday[props.dayIndex].hour[0].temp_f;
+    let cloudCover = props.weatherData.forecast.forecastday[props.dayIndex].hour[0].cloud;
+    if ( temperature >20){
+      switch(true){
+        case cloudCover >= 75:
+          image = require("../assets/images/imageCloud3.png");
+          break;
+        case cloudCover >= 50:
+          image = require("../assets/images/imageCloud2.png");
+          break;
+        case cloudCover >= 25:
+          image = require("../assets/images/imageCloud1.png");
+          break; 
+        default:
+          image = require("../assets/images/imageClear1.png");
+      }
+    }else{
+      image = require("../assets/images/imageCold.png");
+    }
+
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require(image)}
+          source={image}
           style={styles.background}
           resizeMode="cover"
         >
@@ -72,7 +93,7 @@ export default function ReportScreen(props) {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require(image)}
+          source={image}
           style={styles.background}
           resizeMode="cover"
         >

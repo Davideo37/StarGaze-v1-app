@@ -5,7 +5,7 @@ export default function checkWeather(weatherCondition, temperature)
       case "Clear": {
         if (temperature > 40) {
           message = "This night is a great night to Stargaze!";
-        } else if (temperature < 20) {
+        } else if (temperature > 20) {
           message =
             "This night is clear but pretty cold, you should bundle up if you're planning to go out.";
         } else {
